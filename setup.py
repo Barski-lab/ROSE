@@ -4,7 +4,7 @@ import os
 setup(
     name='rose',
     description='ROSE: rank ordering of super-enhancers',
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.txt')).read(),
+    long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
     version='0.0.1',
     url='http://younglab.wi.mit.edu/super_enhancer_code.html',
     download_url=('https://github.com/Barski-lab/ROSE'),

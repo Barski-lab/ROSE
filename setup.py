@@ -12,6 +12,7 @@ setup(
     author_email='misha.kotliar@gmail.com',
     license='MIT',
     packages=find_packages(),
+    package_data={'rose': ['ROSE_callSuper.R']},
     zip_safe=False,
     entry_points={
         'console_scripts': [

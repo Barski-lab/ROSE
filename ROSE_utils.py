@@ -165,22 +165,23 @@ def makeStartDict(annotFile,geneList = []):
         geneList = parseTable(geneList,'\t')
         geneList = [line[0] for line in geneList]
             
-    refseqTable,refseqDict = importRefseq(annotFile)
-    if len(geneList) == 0:
-        geneList = refseqDict.keys()
-    startDict = {}
-    for gene in geneList:
-        if refseqDict.has_key(gene) == False:
-            continue
-        startDict[gene]={}
-        startDict[gene]['sense'] = refseqTable[refseqDict[gene][0]][3]
-        startDict[gene]['chr'] = refseqTable[refseqDict[gene][0]][2]
-        startDict[gene]['start'] = getTSSs([gene],refseqTable,refseqDict)
-        if startDict[gene]['sense'] == '+':
-            startDict[gene]['end'] =[int(refseqTable[refseqDict[gene][0]][5])]
-        else:
-            startDict[gene]['end'] = [int(refseqTable[refseqDict[gene][0]][4])]
-        startDict[gene]['name'] = refseqTable[refseqDict[gene][0]][12]
+    if upper(annotFile).count('REFSEQ') == 1:
+        refseqTable,refseqDict = importRefseq(annotFile)
+        if len(geneList) == 0:
+            geneList = refseqDict.keys()
+        startDict = {}
+        for gene in geneList:
+            if refseqDict.has_key(gene) == False:
+                continue
+            startDict[gene]={}
+            startDict[gene]['sense'] = refseqTable[refseqDict[gene][0]][3]
+            startDict[gene]['chr'] = refseqTable[refseqDict[gene][0]][2]
+            startDict[gene]['start'] = getTSSs([gene],refseqTable,refseqDict)
+            if startDict[gene]['sense'] == '+':
+                startDict[gene]['end'] =[int(refseqTable[refseqDict[gene][0]][5])]
+            else:
+                startDict[gene]['end'] = [int(refseqTable[refseqDict[gene][0]][4])]
+            startDict[gene]['name'] = refseqTable[refseqDict[gene][0]][12]
     return startDict
 
 

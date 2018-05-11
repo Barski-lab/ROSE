@@ -50,7 +50,7 @@ convert_stitched_to_bed <- function(inputStitched,trackName,trackDescription,out
 	write.table(file= outputFile,outMatrix,sep="\t",quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)
 	if(splitSuper==TRUE){
 		cat("\ntrack name=\"Super_", tName,'" description="Super ', trackDescription,'" itemRGB=On color=', superColor,"\n",sep="",file=outputFile,append=TRUE)
-		write.table(file= outputFile,outMatrix[superRows,],sep="\t",quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)
+		write.table(file= outputFile,outMatrix[superRows,,drop=FALSE],sep="\t",quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)
 	}
 }
 
@@ -78,7 +78,7 @@ convert_stitched_to_gateway_bed <- function(inputStitched,outputFileRoot,splitSu
 	if(splitSuper==TRUE){
 		outputFile2 = paste(outputFileRoot,'_Gateway_SuperEnhancers.bed',sep='')
 
-		write.table(file= outputFile2,outMatrix[superRows,],sep="\t",quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)
+		write.table(file= outputFile2,outMatrix[superRows,,drop=FALSE],sep="\t",quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)
 	}
 }
 
